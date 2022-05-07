@@ -1,0 +1,4 @@
+Host github.com-mathuadi3ithub account
+   HostName github.com
+   User git
+   IdentityFile personal_ssh.pub
