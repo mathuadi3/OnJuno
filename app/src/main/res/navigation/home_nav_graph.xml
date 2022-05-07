@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/home_nav_graph.xml">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav_graph"
+    app:startDestination="@id/homeFragment">
 
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.adhish.onjuno.ui.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_homeFragment_to_emptyStateFragment"
+            app:destination="@id/emptyStateFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_valueStateFragment"
+            app:destination="@id/valueStateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/emptyStateFragment"
+        android:name="com.adhish.onjuno.ui.EmptyStateFragment"
+        tools:layout="@layout/fragment_empty_state"
+        android:label="EmptyStateFragment" />
+    <fragment
+        android:id="@+id/valueStateFragment"
+        tools:layout="@layout/fragment_value_state"
+        android:name="com.adhish.onjuno.ui.ValueStateFragment"
+        android:label="ValueStateFragment" />
 </navigation>
