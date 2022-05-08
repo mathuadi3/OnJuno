@@ -20,12 +20,12 @@
     </fragment>
     <fragment
         android:id="@+id/emptyStateFragment"
-        android:name="com.adhish.onjuno.ui.EmptyStateFragment"
+        android:name="com.adhish.onjuno.ui.empty.EmptyStateFragment"
         tools:layout="@layout/fragment_empty_state"
         android:label="EmptyStateFragment" />
     <fragment
         android:id="@+id/valueStateFragment"
         tools:layout="@layout/fragment_value_state"
-        android:name="com.adhish.onjuno.ui.ValueStateFragment"
+        android:name="com.adhish.onjuno.ui.value.ValueStateFragment"
         android:label="ValueStateFragment" />
 </navigation>
