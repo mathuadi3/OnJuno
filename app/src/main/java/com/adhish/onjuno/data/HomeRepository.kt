@@ -10,6 +10,6 @@ class HomeRepository @Inject constructor(
 ): SafeApiRequest() {
 
     suspend fun getEmptyStateData() = apiRequest { networkCall.getEmptyState() }
-    suspend fun geValueStateData() = apiRequest { networkCall.getValuesState() }
+    suspend fun getValueStateData() = apiRequest { networkCall.getValuesState() }
 
 }
