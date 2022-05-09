@@ -47,6 +47,7 @@ class ValueStateFragment : Fragment() {
                 setupData(it)
             }
 
+            //To show progressbar
             isLoading.observe(viewLifecycleOwner) {
                 binding?.progressBar?.apply { if (it) show() else hide() }
             }

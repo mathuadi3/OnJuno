@@ -12,6 +12,7 @@ import com.adhish.onjuno.util.getSVGFromUrl
 
 class RecentTransactionAdapter() :
     ListAdapter<AllTransaction, RecentTransactionAdapter.HoldingViewHolder>(DiffCallBack()) {
+    //To update list changes
     class DiffCallBack : DiffUtil.ItemCallback<AllTransaction>() {
         override fun areItemsTheSame(
             oldItem: AllTransaction,

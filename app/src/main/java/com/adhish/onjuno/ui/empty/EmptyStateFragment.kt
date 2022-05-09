@@ -50,7 +50,7 @@ class EmptyStateFragment : Fragment() {
             emptyStateData.observe(viewLifecycleOwner) {
                 setupData(it)
             }
-
+            //To show progressbar
             isLoading.observe(viewLifecycleOwner) {
                 binding?.progressBar?.apply { if (it) show() else hide() }
             }

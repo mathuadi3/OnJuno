@@ -8,7 +8,7 @@ import retrofit2.http.Headers
 import retrofit2.http.POST
 
 interface NetworkCall {
-
+    //Network calls
     @GET("home")
     suspend fun getValuesState(): Response<ResponseModel>
 

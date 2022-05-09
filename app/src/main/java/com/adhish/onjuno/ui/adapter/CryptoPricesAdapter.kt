@@ -12,6 +12,7 @@ import com.adhish.onjuno.util.getSVGFromUrl
 
 class CryptoPricesAdapter :
     ListAdapter<CryptoPrice, CryptoPricesAdapter.HoldingViewHolder>(DiffCallBack()) {
+    //To update list changes
     class DiffCallBack : DiffUtil.ItemCallback<CryptoPrice>() {
         override fun areItemsTheSame(
             oldItem: CryptoPrice,

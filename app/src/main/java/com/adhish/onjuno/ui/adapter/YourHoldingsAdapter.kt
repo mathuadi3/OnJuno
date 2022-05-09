@@ -15,6 +15,7 @@ class YourHoldingsAdapter(
     private val onClick: (YourCryptoHolding) -> Unit
 ) :
     ListAdapter<YourCryptoHolding, YourHoldingsAdapter.HoldingViewHolder>(DiffCallBack()) {
+    //To update list changes
     class DiffCallBack : DiffUtil.ItemCallback<YourCryptoHolding>() {
         override fun areItemsTheSame(
             oldItem: YourCryptoHolding,
