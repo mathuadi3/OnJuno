@@ -5,41 +5,36 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.adhish.onjuno.databinding.ItemHoldingsBinding
-import com.adhish.onjuno.model.YourCryptoHolding
-import com.adhish.onjuno.util.FromScreen
+import com.adhish.onjuno.databinding.ItemTransactionBinding
+import com.adhish.onjuno.model.AllTransaction
 import com.adhish.onjuno.util.getSVGFromUrl
-import com.bumptech.glide.Glide
 
 
-class YourHoldingsAdapter(
-    val fromScreen: FromScreen,
-    val onClick: (String) -> Unit
-) :
-    ListAdapter<YourCryptoHolding, YourHoldingsAdapter.HoldingViewHolder>(DiffCallBack()) {
-    class DiffCallBack : DiffUtil.ItemCallback<YourCryptoHolding>() {
+class RecentTransactionAdapter() :
+    ListAdapter<AllTransaction, RecentTransactionAdapter.HoldingViewHolder>(DiffCallBack()) {
+    class DiffCallBack : DiffUtil.ItemCallback<AllTransaction>() {
         override fun areItemsTheSame(
-            oldItem: YourCryptoHolding,
-            newItem: YourCryptoHolding
+            oldItem: AllTransaction,
+            newItem: AllTransaction
         ): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: YourCryptoHolding,
-            newItem: YourCryptoHolding
+            oldItem: AllTransaction,
+            newItem: AllTransaction
         ): Boolean {
             return oldItem == newItem
         }
     }
 
-    class HoldingViewHolder(val binding: ItemHoldingsBinding) :
+    class HoldingViewHolder(val binding: ItemTransactionBinding) :
         RecyclerView.ViewHolder(binding.root) {}
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HoldingViewHolder {
         return HoldingViewHolder(
-            ItemHoldingsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemTransactionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
@@ -48,7 +43,11 @@ class YourHoldingsAdapter(
         val item = getItem(position)
         holder.binding.apply {
             tvCoinText.text = item.title
-            ivIcon.getSVGFromUrl(item.logo)
+            val price = "$${item.txnAmount}"
+            tvCoinPrice.text = price
+            tvSubtitle.text = item.txnTime
+            tvReturnText.text = item.txnSubAmount
+            ivIcon.getSVGFromUrl(item.txnLogo)
         }
     }
 

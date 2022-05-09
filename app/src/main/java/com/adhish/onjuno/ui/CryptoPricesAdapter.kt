@@ -6,37 +6,39 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.adhish.onjuno.databinding.ItemHoldingsBinding
+import com.adhish.onjuno.databinding.ItemPriceBinding
+import com.adhish.onjuno.model.CryptoPrice
 import com.adhish.onjuno.model.YourCryptoHolding
 import com.adhish.onjuno.util.FromScreen
+import com.adhish.onjuno.util.getSVGFromUrl
 import com.bumptech.glide.Glide
 
 
-class CryptoPricesAdapter(
-) :
-    ListAdapter<YourCryptoHolding, CryptoPricesAdapter.HoldingViewHolder>(DiffCallBack()) {
-    class DiffCallBack : DiffUtil.ItemCallback<YourCryptoHolding>() {
+class CryptoPricesAdapter :
+    ListAdapter<CryptoPrice, CryptoPricesAdapter.HoldingViewHolder>(DiffCallBack()) {
+    class DiffCallBack : DiffUtil.ItemCallback<CryptoPrice>() {
         override fun areItemsTheSame(
-            oldItem: YourCryptoHolding,
-            newItem: YourCryptoHolding
+            oldItem: CryptoPrice,
+            newItem: CryptoPrice
         ): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: YourCryptoHolding,
-            newItem: YourCryptoHolding
+            oldItem: CryptoPrice,
+            newItem: CryptoPrice
         ): Boolean {
             return oldItem == newItem
         }
     }
 
-    class HoldingViewHolder(val binding: ItemHoldingsBinding) :
+    class HoldingViewHolder(val binding: ItemPriceBinding) :
         RecyclerView.ViewHolder(binding.root) {}
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HoldingViewHolder {
         return HoldingViewHolder(
-            ItemHoldingsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemPriceBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
@@ -45,10 +47,9 @@ class CryptoPricesAdapter(
         val item = getItem(position)
         holder.binding.apply {
             tvCoinText.text = item.title
-            Glide.with(root.context)
-                .load(item.logo)
-                .centerCrop()
-                .into(ivIcon)
+            val price = "$${item.currentPriceInUsd}"
+            tvCoinPrice.text = price
+            ivIcon.getSVGFromUrl(item.logo)
         }
     }
 

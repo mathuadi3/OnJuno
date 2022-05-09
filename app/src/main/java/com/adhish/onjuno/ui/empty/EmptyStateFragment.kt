@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.adhish.onjuno.databinding.FragmentEmptyStateBinding
 import com.adhish.onjuno.model.ResponseModel
+import com.adhish.onjuno.ui.CryptoPricesAdapter
 import com.adhish.onjuno.ui.HomeViewModel
+import com.adhish.onjuno.ui.RecentTransactionAdapter
 import com.adhish.onjuno.ui.YourHoldingsAdapter
 import com.adhish.onjuno.util.FromScreen
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,6 +26,8 @@ class EmptyStateFragment : Fragment() {
     private val binding get() = _binding
     private val viewModel by activityViewModels<HomeViewModel>()
     private lateinit var holdingsAdapter: YourHoldingsAdapter
+    private lateinit var pricesAdapter: CryptoPricesAdapter
+    private lateinit var transactionAdapter: RecentTransactionAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,23 +42,36 @@ class EmptyStateFragment : Fragment() {
 
         viewModel.getEmptyStateData()
         setUpViews()
-        with(viewModel){
-            emptyStateData.observe(viewLifecycleOwner){
+        with(viewModel) {
+            emptyStateData.observe(viewLifecycleOwner) {
                 setupData(it)
             }
-
         }
     }
 
     private fun setUpViews() {
         binding?.apply {
-            holdingsAdapter = YourHoldingsAdapter(FromScreen.EMPTY){
+            holdingsAdapter = YourHoldingsAdapter(FromScreen.EMPTY) {
                 //Add click implementation
             }
             layoutCryptoHolding.rvHolding.apply {
                 layoutManager = LinearLayoutManager(requireContext())
                 adapter = holdingsAdapter
                 addItemDecoration(DividerItemDecoration(requireContext(), RecyclerView.VERTICAL))
+            }
+
+            pricesAdapter = CryptoPricesAdapter()
+
+            layoutPrices.rvPrices.apply {
+                layoutManager =
+                    LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+                adapter = pricesAdapter
+            }
+
+            transactionAdapter = RecentTransactionAdapter()
+            layoutTransaction.rvTransactions.apply {
+                layoutManager=LinearLayoutManager(requireContext())
+                adapter=transactionAdapter
             }
         }
     }
@@ -66,6 +83,8 @@ class EmptyStateFragment : Fragment() {
                 tvSubtitle.text = response.cryptoBalance.subtitle
             }
             holdingsAdapter.submitList(response.yourCryptoHoldings)
+            pricesAdapter.submitList(response.cryptoPrices)
+            transactionAdapter.submitList(response.allTransactions)
         }
     }
 }

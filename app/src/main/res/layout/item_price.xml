@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="10dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardPrices"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginVertical="30dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="20dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/ivIcon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:contentDescription="@string/icon"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--No icon for graph found hence leaving it empty-->
+            <ImageView
+                android:id="@+id/ivGraph"
+                android:layout_width="125dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:contentDescription="@string/icon"
+                app:layout_constraintStart_toEndOf="@id/ivIcon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvCoinText"
+                style="@style/TextView.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/text_gray"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/ivIcon"
+                app:layout_constraintTop_toBottomOf="@id/ivIcon"
+                tools:text="BTC" />
+
+            <TextView
+                android:id="@+id/tvCoinPrice"
+                style="@style/TextView.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:textSize="19sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tvCoinText"
+                app:layout_constraintTop_toBottomOf="@id/tvCoinText"
+                tools:text="$67863.22" />
+
+
+            <!--Ommiting return percent and hours fields as not present in the api-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/btnBuy"
+        style="@style/Widget.OutlinedButton"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:elevation="20dp"
+        android:padding="0dp"
+        android:text="@string/buy"
+        android:translationX="5dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnDownload"
+        style="@style/Widget.OutlinedButton"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:icon="@drawable/ic_baseline_arrow_downward_24"
+        app:iconGravity="start"
+        app:layout_constraintEnd_toStartOf="@id/btnBuy"
+        app:layout_constraintTop_toTopOf="@id/btnBuy"
+        tools:visibility="visible" />
+</androidx.constraintlayout.widget.ConstraintLayout>

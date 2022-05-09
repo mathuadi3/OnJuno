@@ -22,8 +22,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toTopOf="@id/tvSubtitle"
-        app:layout_constraintEnd_toStartOf="@id/btnDeposit"
+        app:layout_constraintEnd_toStartOf="@id/tvCoinPrice"
         app:layout_constraintStart_toEndOf="@id/ivIcon"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="BTC" />
@@ -46,13 +47,11 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="10dp"
         android:textStyle="bold"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btnDeposit"
+        app:layout_constraintEnd_toStartOf="@id/tvReturnText"
         app:layout_constraintStart_toStartOf="@id/tvCoinText"
         app:layout_constraintTop_toBottomOf="@id/tvCoinText"
-        tools:text="0.00056 BTC"
-        tools:visibility="visible" />
+        tools:text="Time" />
 
     <TextView
         android:id="@+id/tvReturnText"
@@ -61,42 +60,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"
         android:drawablePadding="5dp"
-        android:textColor="@color/green"
         android:textStyle="bold"
-        android:visibility="gone"
-        app:drawableStartCompat="@drawable/ic_baseline_trending_up_24"
         app:layout_constraintBottom_toBottomOf="@id/tvSubtitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvSubtitle"
-        tools:text="0.00056 BTC"
-        tools:visibility="visible" />
+        tools:text="Subtitle" />
 
-    <Button
-        android:id="@+id/btnDeposit"
-        style="@style/Widget.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="@string/deposit"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btnBuy"
-        app:layout_constraintStart_toEndOf="@id/tvCoinText"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="gone" />
-
-    <Button
-        android:id="@+id/btnBuy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="@string/buy"
-        android:textAllCaps="false"
-        android:textSize="12sp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btnDeposit"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="gone" />
 </androidx.constraintlayout.widget.ConstraintLayout>

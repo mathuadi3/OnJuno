@@ -1,13 +1,12 @@
 package com.adhish.onjuno.util
 
-import android.R
-import android.app.Activity
-import android.graphics.drawable.PictureDrawable
 import android.view.View
 import android.widget.ImageView
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
-import com.bumptech.glide.Glide
+import coil.ImageLoader
+import coil.decode.SvgDecoder
+import coil.request.ImageRequest
 
 
 fun NavController.safeNavigate(direction: NavDirections) {
@@ -19,4 +18,20 @@ fun View.setSafeOnClickListener(onSafeClick: (View) -> Unit) {
         onSafeClick(it)
     }
     setOnClickListener(safeClickListener)
+}
+
+
+fun ImageView.getSVGFromUrl(url: String) {
+    if (url.lowercase().endsWith("svg")) {
+        val imageLoader = ImageLoader.Builder(context)
+            .componentRegistry {
+                add(SvgDecoder(context))
+            }.build()
+
+        val request = ImageRequest.Builder(context).apply {
+            data(url).decoder(SvgDecoder(context))
+        }.target(this).build()
+
+        imageLoader.enqueue(request)
+    }
 }

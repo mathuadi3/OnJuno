@@ -2,6 +2,7 @@ package com.adhish.onjuno.model
 
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 data class AllTransaction(
     @SerializedName("title")
@@ -13,5 +14,6 @@ data class AllTransaction(
     @SerializedName("txn_sub_amount")
     val txnSubAmount: String,
     @SerializedName("txn_time")
-    val txnTime: String
+    val txnTime: String,
+    val id: String = UUID.randomUUID().toString()
 )
