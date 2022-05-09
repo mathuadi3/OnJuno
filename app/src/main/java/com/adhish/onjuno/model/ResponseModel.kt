@@ -2,6 +2,7 @@ package com.adhish.onjuno.model
 
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 data class ResponseModel(
     @SerializedName("crypto_balance")
@@ -11,5 +12,6 @@ data class ResponseModel(
     @SerializedName("your_crypto_holdings")
     val yourCryptoHoldings: List<YourCryptoHolding>,
     @SerializedName("all_transactions")
-    val allTransactions: List<AllTransaction>
+    val allTransactions: List<AllTransaction>,
+    val id: String = UUID.randomUUID().toString()
 )

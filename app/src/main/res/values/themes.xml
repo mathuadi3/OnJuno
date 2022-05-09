@@ -2,16 +2,15 @@
     <!-- Base application theme. -->
     <style name="Theme.OnJunoSample" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryVariant">@color/blue</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">@color/blue</item>
+        <item name="colorSecondaryVariant">@color/blue</item>
+        <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
     </style>
 
     <style name="ShapeAppearance.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
@@ -33,5 +32,29 @@
     <style name="BlackButtonThemeOverlay">
         <item name="colorPrimary">@color/black</item>
         <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+    <style name="Widget.OutlinedButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="materialThemeOverlay">@style/BlueThemeOverlay</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/blue</item>
+    </style>
+
+    <style name="BlueThemeOverlay">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/blue</item>
+    </style>
+
+    <style name="TextView.Title" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="TextView.SubTitle" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/text_gray</item>
     </style>
 </resources>

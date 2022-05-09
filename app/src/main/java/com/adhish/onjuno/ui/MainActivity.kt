@@ -6,7 +6,9 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.adhish.onjuno.R
 import com.adhish.onjuno.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding

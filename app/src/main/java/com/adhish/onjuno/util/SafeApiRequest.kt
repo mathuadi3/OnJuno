@@ -10,7 +10,7 @@ abstract class SafeApiRequest {
             if (c.isSuccessful && c.body() != null)
                 Result.Success(c.body()!!)
             else
-                Result.Error(code = 1, message = "Something Went Wrong!")
+                Result.Error(code = c.raw().code(), message = c.raw().message())
         } catch (e: Exception) {
             e.printStackTrace()
             Result.Error(code = 0, message = "Network Error")
