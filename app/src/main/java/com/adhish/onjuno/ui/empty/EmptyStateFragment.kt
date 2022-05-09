@@ -9,14 +9,17 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.adhish.onjuno.databinding.FragmentEmptyStateBinding
+import com.adhish.onjuno.model.AllTransaction
 import com.adhish.onjuno.model.ResponseModel
 import com.adhish.onjuno.ui.CryptoPricesAdapter
 import com.adhish.onjuno.ui.HomeViewModel
 import com.adhish.onjuno.ui.RecentTransactionAdapter
 import com.adhish.onjuno.ui.YourHoldingsAdapter
 import com.adhish.onjuno.util.FromScreen
+import com.adhish.onjuno.util.hide
+import com.adhish.onjuno.util.show
+import com.adhish.onjuno.util.toTransaction
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,6 +31,7 @@ class EmptyStateFragment : Fragment() {
     private lateinit var holdingsAdapter: YourHoldingsAdapter
     private lateinit var pricesAdapter: CryptoPricesAdapter
     private lateinit var transactionAdapter: RecentTransactionAdapter
+    private val transactions = arrayListOf<AllTransaction>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,13 +50,20 @@ class EmptyStateFragment : Fragment() {
             emptyStateData.observe(viewLifecycleOwner) {
                 setupData(it)
             }
+
+            isLoading.observe(viewLifecycleOwner) {
+                binding?.progressBar?.apply { if (it) show() else hide() }
+            }
         }
     }
 
     private fun setUpViews() {
         binding?.apply {
-            holdingsAdapter = YourHoldingsAdapter(FromScreen.EMPTY) {
+            holdingsAdapter = YourHoldingsAdapter(FromScreen.EMPTY) { holding ->
                 //Add click implementation
+                viewModel.addTransaction(holding)
+                updateTransactionList()
+
             }
             layoutCryptoHolding.rvHolding.apply {
                 layoutManager = LinearLayoutManager(requireContext())
@@ -70,10 +81,17 @@ class EmptyStateFragment : Fragment() {
 
             transactionAdapter = RecentTransactionAdapter()
             layoutTransaction.rvTransactions.apply {
-                layoutManager=LinearLayoutManager(requireContext())
-                adapter=transactionAdapter
+                layoutManager = LinearLayoutManager(requireContext())
+                adapter = transactionAdapter
             }
         }
+    }
+
+    private fun updateTransactionList() {
+        val transactionList = arrayListOf<AllTransaction>()
+        transactionList.addAll(viewModel.holdingsList.map { it.toTransaction() })
+        transactionList.addAll(transactions)
+        transactionAdapter.submitList(transactionList)
     }
 
     private fun setupData(response: ResponseModel) {
@@ -84,7 +102,8 @@ class EmptyStateFragment : Fragment() {
             }
             holdingsAdapter.submitList(response.yourCryptoHoldings)
             pricesAdapter.submitList(response.cryptoPrices)
-            transactionAdapter.submitList(response.allTransactions)
+            transactions.addAll(response.allTransactions)
+            transactionAdapter.submitList(transactions)
         }
     }
 }

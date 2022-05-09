@@ -7,6 +7,8 @@ import androidx.navigation.NavDirections
 import coil.ImageLoader
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
+import com.adhish.onjuno.model.AllTransaction
+import com.adhish.onjuno.model.YourCryptoHolding
 
 
 fun NavController.safeNavigate(direction: NavDirections) {
@@ -34,4 +36,22 @@ fun ImageView.getSVGFromUrl(url: String) {
 
         imageLoader.enqueue(request)
     }
+}
+
+fun View.show() {
+    visibility = View.VISIBLE
+}
+
+fun View.hide() {
+    visibility = View.GONE
+}
+
+fun YourCryptoHolding.toTransaction(): AllTransaction {
+    return AllTransaction(
+        title = this.title,
+        txnAmount = "1",
+        txnLogo = this.logo,
+        txnSubAmount = this.title,
+        txnTime = "Just Now"
+    )
 }

@@ -16,6 +16,8 @@ import com.adhish.onjuno.ui.HomeViewModel
 import com.adhish.onjuno.ui.RecentTransactionAdapter
 import com.adhish.onjuno.ui.YourHoldingsAdapter
 import com.adhish.onjuno.util.FromScreen
+import com.adhish.onjuno.util.hide
+import com.adhish.onjuno.util.show
 
 
 class ValueStateFragment : Fragment() {
@@ -44,12 +46,16 @@ class ValueStateFragment : Fragment() {
             valueStateData.observe(viewLifecycleOwner) {
                 setupData(it)
             }
+
+            isLoading.observe(viewLifecycleOwner) {
+                binding?.progressBar?.apply { if (it) show() else hide() }
+            }
         }
     }
 
     private fun setUpViews() {
         binding?.apply {
-            holdingsAdapter = YourHoldingsAdapter(FromScreen.EMPTY) {
+            holdingsAdapter = YourHoldingsAdapter(FromScreen.VALUE) {
                 //Add click implementation
             }
             layoutCryptoHolding.rvHolding.apply {

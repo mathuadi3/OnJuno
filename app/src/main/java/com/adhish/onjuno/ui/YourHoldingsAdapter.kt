@@ -7,14 +7,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.adhish.onjuno.databinding.ItemHoldingsBinding
 import com.adhish.onjuno.model.YourCryptoHolding
-import com.adhish.onjuno.util.FromScreen
-import com.adhish.onjuno.util.getSVGFromUrl
-import com.bumptech.glide.Glide
+import com.adhish.onjuno.util.*
 
 
 class YourHoldingsAdapter(
-    val fromScreen: FromScreen,
-    val onClick: (String) -> Unit
+    private val fromScreen: FromScreen,
+    private val onClick: (YourCryptoHolding) -> Unit
 ) :
     ListAdapter<YourCryptoHolding, YourHoldingsAdapter.HoldingViewHolder>(DiffCallBack()) {
     class DiffCallBack : DiffUtil.ItemCallback<YourCryptoHolding>() {
@@ -47,6 +45,22 @@ class YourHoldingsAdapter(
     override fun onBindViewHolder(holder: HoldingViewHolder, position: Int) {
         val item = getItem(position)
         holder.binding.apply {
+            if (fromScreen == FromScreen.EMPTY) {
+                btnBuy.show()
+                btnDeposit.show()
+                tvCoinPrice.hide()
+                tvSubtitle.hide()
+                btnBuy.setSafeOnClickListener { onClick.invoke(item) }
+            } else {
+                btnBuy.hide()
+                btnDeposit.hide()
+                tvCoinPrice.show()
+                tvSubtitle.show()
+                val price = "$${item.currentBalInUsd}"
+                tvCoinPrice.text = price
+                tvSubtitle.text = item.currentBalInToken
+            }
+
             tvCoinText.text = item.title
             ivIcon.getSVGFromUrl(item.logo)
         }

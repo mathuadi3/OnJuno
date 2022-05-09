@@ -54,6 +54,7 @@
         tools:text="0.00056 BTC"
         tools:visibility="visible" />
 
+    <!--Not included in the api hence never unhiding the view-->
     <TextView
         android:id="@+id/tvReturnText"
         style="@style/TextView.SubTitle"

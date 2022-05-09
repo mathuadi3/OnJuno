@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.adhish.onjuno.data.HomeRepository
 import com.adhish.onjuno.model.ResponseModel
+import com.adhish.onjuno.model.YourCryptoHolding
 import com.adhish.onjuno.util.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -26,6 +27,8 @@ class HomeViewModel @Inject constructor(
     val error: LiveData<Result.Error> get() = _error
     private val _isLoading = MutableLiveData(false)
     val isLoading: LiveData<Boolean> get() = _isLoading
+    private val _holdingsList = arrayListOf<YourCryptoHolding>()
+    val holdingsList get() = _holdingsList
 
     fun getEmptyStateData() {
         viewModelScope.launch {
@@ -49,6 +52,10 @@ class HomeViewModel @Inject constructor(
                 is Result.Error -> _error.postValue(response)
             }
         }
+    }
+
+    fun addTransaction(cryptoHolding: YourCryptoHolding) {
+        _holdingsList.add(0,cryptoHolding)
     }
 
 }
