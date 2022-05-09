@@ -10,11 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:paddingHorizontal="5dp">
+        android:paddingHorizontal="10dp">
 
         <include
             android:id="@+id/layoutCryptoBalance"
             layout="@layout/layout_crypto_balance"
+            android:layout_marginHorizontal="2dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,9 +37,9 @@
             android:id="@+id/layoutCryptoHolding"
             layout="@layout/layout_crypto_holding"
             android:layout_width="0dp"
+            android:layout_marginHorizontal="2dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/separator1" />
 
@@ -57,9 +58,9 @@
             android:id="@+id/layoutTransaction"
             layout="@layout/layout_transactions"
             android:layout_width="0dp"
+            android:layout_marginHorizontal="2dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/separator2" />
 
@@ -78,9 +79,9 @@
             android:id="@+id/layoutPrices"
             layout="@layout/layout_crypto_prices"
             android:layout_width="0dp"
+            android:layout_marginHorizontal="2dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/separator3" />
 
