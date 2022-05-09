@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.adhish.onjuno.databinding.FragmentValueStateBinding
 import com.adhish.onjuno.model.ResponseModel
-import com.adhish.onjuno.ui.CryptoPricesAdapter
+import com.adhish.onjuno.ui.adapter.CryptoPricesAdapter
 import com.adhish.onjuno.ui.HomeViewModel
-import com.adhish.onjuno.ui.RecentTransactionAdapter
-import com.adhish.onjuno.ui.YourHoldingsAdapter
+import com.adhish.onjuno.ui.adapter.RecentTransactionAdapter
+import com.adhish.onjuno.ui.adapter.YourHoldingsAdapter
 import com.adhish.onjuno.util.FromScreen
 import com.adhish.onjuno.util.hide
 import com.adhish.onjuno.util.show

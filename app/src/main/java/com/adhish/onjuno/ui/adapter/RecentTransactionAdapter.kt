@@ -1,4 +1,4 @@
-package com.adhish.onjuno.ui
+package com.adhish.onjuno.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
